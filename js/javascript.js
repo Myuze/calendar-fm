@@ -1,5 +1,5 @@
 var hoursInDay = 24;
-var hourStart = 0;
+var hourStart = 9;
 var containerEl = $('.container');
 
 // Show current date and time
@@ -12,9 +12,9 @@ setInterval( function() {
 var tableEl = $('<table>').addClass('table table-bordered');
 var tBodyEl = $('<tbody>');
 
-for (i = 0; i < hoursInDay; i++) {
+for (hour = 0 + hourStart; hour < hoursInDay + hourStart; hour++) {
   var tRowEl = $('<tr>');
-  var tHeadEl = $('<th>').attr('scope', 'row').text(moment().hour(i).format('h:00 a'));
+  var tHeadEl = $('<th>').attr('scope', 'row').text(moment().add(hour, 'h').format('hh:00 a'));
   var tRowEventEl = $('<td>');
   var tRowLockEl = $('<td>');
   
