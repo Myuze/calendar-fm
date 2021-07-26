@@ -1,5 +1,5 @@
 var hoursInDay = 24;
-var hourStart = 9;
+var hourStart = 8;
 var containerEl = $('.container');
 
 // Show current date and time
@@ -14,7 +14,7 @@ var tBodyEl = $('<tbody>');
 
 for (hour = 0 + hourStart; hour < hoursInDay + hourStart; hour++) {
   var tRowEl = $('<tr>');
-  var tHeadEl = $('<th>').attr('scope', 'row').text(moment().add(hour, 'h').format('hh:00 a'));
+  var tHeadEl = $('<th>').attr('scope', 'row').text(moment().subtract(moment().format('h') - hour, 'h').format('hh:00 a'));
   var tRowEventEl = $('<td>');
   var tRowLockEl = $('<td>');
   
@@ -29,6 +29,7 @@ containerEl.append(tableEl);
 
 
 // Fill the first column dynamically by amount of hours in the day
+
 
 // Color code the hours in the event using bootstrap based off the current time
 $('tr').children('td').addClass('table-secondary')
