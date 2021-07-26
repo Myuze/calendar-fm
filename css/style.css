@@ -30,6 +30,14 @@ textarea {
   border-radius: 15px;
 }
 
+th {
+  width: 15%;
+}
+
+.lock {
+  width: 15%;
+}
+
 .row {
   white-space: pre-wrap;
   height: 80px;

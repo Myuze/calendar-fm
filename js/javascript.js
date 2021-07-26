@@ -14,19 +14,20 @@ var tableEl = $('<table>').addClass('table table-bordered');
 var tBodyEl = $('<tbody>');
 
 for (hour = 0 + hourStart; hour < hoursInDay + hourStart; hour++) {
-  var cellHour = moment().subtract(moment().format('h') - hour, 'h')
+  var cellHour = moment().subtract(moment().format('HH') - hour, 'H')
   var tRowEl = $('<tr>');
   var tHeadEl = $('<th>').attr('scope', 'row').text(cellHour.format('hh:00 a'));
   var tRowEventEl = $('<td>');
-  var tRowLockEl = $('<td>');
+  var tRowLockEl = $('<td>').addClass('lock');
 
   // Color Cells depending on time
   if (moment(cellHour).isBefore(moment(), 'h')) {
     tRowEventEl.addClass('past');
-
+    
   } else if (moment(cellHour).isSame(moment(), 'h')) {
+    tHeadEl.addClass('past');
     tRowEventEl.addClass('present');
-
+    
   } else if (moment(cellHour).isAfter(moment(), 'h')) {
     tRowEventEl.addClass('future')
   }
@@ -45,7 +46,7 @@ containerEl.append(tableEl);
 
 
 // Color code the hours in the event using bootstrap based off the current time
-$('tbody').children().eq(5).addClass('present')
+// $('tbody').children().eq(5).addClass('present')
 $('tr').children('td').addClass('table-secondary')
 
 // Clicking on the table row triggers an bootstrap enter event modal
