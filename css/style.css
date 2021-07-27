@@ -34,8 +34,9 @@ th {
   width: 15%;
 }
 
-.lock {
+.col-lock {
   width: 15%;
+  background-color: hsl(199, 100%, 50%);
 }
 
 .row {
