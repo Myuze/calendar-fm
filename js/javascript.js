@@ -42,7 +42,7 @@ for (hour = 0 + hourStart; hour < hoursInDay + hourStart; hour++) {
   var cellHour = moment().subtract(moment().format('HH') - hour, 'H')
   var tRowEl = $('<tr>').addClass('time-block');
   var tHeadEl = $('<th>').attr('scope', 'row').addClass('hour align-middle').text(cellHour.format('hh:00 A'));
-  var tRowEventEl = $('<td>').addClass('col-event text-break text-wrap data-editable').attr('contenteditable', true);
+  var tRowEventEl = $('<td>').addClass('col-event text-break text-wrap text-left data-editable').attr('contenteditable', true);
   var tRowLockEl = $('<td>').addClass('col-lock align-middle saveBtn').text('🔒');
 
   // Color Cells depending on time
