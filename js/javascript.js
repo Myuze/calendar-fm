@@ -11,15 +11,20 @@ var eventInfo = {
   content: "",
 
   save: function() {
-    console.log('EIC: ', eventInfoCache)
     eventInfoCache[this.timeStart] = this.content;
     console.log('EIC After: ', eventInfoCache)
     localStorage.setItem('eventInfo', JSON.stringify(eventInfoCache))
   },
 
   load: function() {
-    const eiJSON = localStorage.getItem('eventInfo')
-    console.log('eventInfo JSON: ', JSON.parse(eiJSON) )
+    eventInfoCache = JSON.parse(localStorage.getItem('eventInfo'))
+    console.log('eventInfo JSON: ', eiJSON)
+
+    for (const [key, value] of Object.entries(eventInfoCache)) {
+      var thEl = $(`th:contains('${key}')`)
+      thEl.siblings('.col-event').text(value) 
+    }
+
   } 
 }
 
@@ -67,15 +72,9 @@ containerEl.append(tableEl);
 // The Event is stored in localstorage
 $('table').on('click', '.saveBtn', function(event) {
   // Save Event Text
-  eventInfo.timeStart = $(event.target).parent().children().closest('th').text();
-  eventInfo.content = $(event.target).parent().children().closest('.col-event').text();
-  console.log("SAVED, CLICK")
-  console.log('timeStart: ', eventInfo.timeStart)
-  console.log('content: ', eventInfo.content)
-
+  eventInfo.timeStart = $(event.target).siblings('.hour').text();
+  eventInfo.content = $(event.target).siblings('.col-event').text();
   eventInfo.save();
 })
 
 eventInfo.load();
-
-console.log(localStorage)
