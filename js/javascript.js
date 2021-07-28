@@ -18,10 +18,12 @@ var eventInfo = {
   load: function() {
     eventInfoCache = JSON.parse(localStorage.getItem('eventInfo'))
 
-    for (const [key, value] of Object.entries(eventInfoCache)) {
-      var thEl = $(`th:contains('${key}')`)
-      thEl.siblings('.col-event').text(value) 
-    }
+    if (eventInfoCache != null) {
+      for (const [key, value] of Object.entries(eventInfoCache)) {
+        var thEl = $(`th:contains('${key}')`)
+        thEl.siblings('.col-event').text(value) 
+      }
+    } else { eventInfoCache = {} }
   } 
 }
 
