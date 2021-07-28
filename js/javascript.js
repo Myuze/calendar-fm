@@ -3,7 +3,7 @@ const hoursInDay = 24;
 const hourStart = 0;
 const workHoursStart = 9;
 const containerEl = $('.container');
-const eventInfoCache = {};
+var eventInfoCache = {};
 
 // Event Object
 var eventInfo = {
@@ -12,19 +12,16 @@ var eventInfo = {
 
   save: function() {
     eventInfoCache[this.timeStart] = this.content;
-    console.log('EIC After: ', eventInfoCache)
     localStorage.setItem('eventInfo', JSON.stringify(eventInfoCache))
   },
 
   load: function() {
     eventInfoCache = JSON.parse(localStorage.getItem('eventInfo'))
-    console.log('eventInfo JSON: ', eiJSON)
 
     for (const [key, value] of Object.entries(eventInfoCache)) {
       var thEl = $(`th:contains('${key}')`)
       thEl.siblings('.col-event').text(value) 
     }
-
   } 
 }
 
@@ -37,9 +34,9 @@ setInterval( function() {
   $('#currentDay').text(time);
 }, 1000);
 
-// Create table based on hours in the day
-var tableEl = $('<table>').addClass('table');
-var tBodyEl = $('<tbody>');
+// Dynamically create table based on hours in the day
+const tableEl = $('<table>').addClass('table');
+const tBodyEl = $('<tbody>');
 
 for (hour = 0 + hourStart; hour < hoursInDay + hourStart; hour++) {
   var cellHour = moment().subtract(moment().format('HH') - hour, 'H')
@@ -71,10 +68,10 @@ containerEl.append(tableEl);
 
 // The Event is stored in localstorage
 $('table').on('click', '.saveBtn', function(event) {
-  // Save Event Text
   eventInfo.timeStart = $(event.target).siblings('.hour').text();
   eventInfo.content = $(event.target).siblings('.col-event').text();
   eventInfo.save();
 })
 
+// Load existing events on page load
 eventInfo.load();
