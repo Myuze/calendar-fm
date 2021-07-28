@@ -1,28 +1,26 @@
 // Global Definitions
-var hoursInDay = 24;
-var hourStart = 0;
-var workHoursStart = 9;
-var containerEl = $('.container');
+const hoursInDay = 24;
+const hourStart = 0;
+const workHoursStart = 9;
+const containerEl = $('.container');
+const eventInfoCache = {};
 
 // Event Object
-var eventBlock = {
+var eventInfo = {
   timeStart: 0,
-  timeEnd: 0,
   content: "",
 
-  createEvent: function() {
-    // Pass
+  save: function() {
+    console.log('EIC: ', eventInfoCache)
+    eventInfoCache[this.timeStart] = this.content;
+    console.log('EIC After: ', eventInfoCache)
+    localStorage.setItem('eventInfo', JSON.stringify(eventInfoCache))
   },
 
-  eventsSave: function() {
-    
-    // localStorage.setItem('events', /*Array of Events*/)
-  },
-
-  eventsLoad: function() {
-    
-    // localStorage.getItem('events', /*Array of Events*/)
-  }
+  load: function() {
+    const eiJSON = localStorage.getItem('eventInfo')
+    console.log('eventInfo JSON: ', JSON.parse(eiJSON) )
+  } 
 }
 
 // Show current date and time
@@ -67,7 +65,17 @@ tableEl.append(tBodyEl);
 containerEl.append(tableEl);
 
 // The Event is stored in localstorage
-$('table').on('click', '.saveBtn', function() {
+$('table').on('click', '.saveBtn', function(event) {
   // Save Event Text
-  console.log("SAVED, MAYBE?")
+  eventInfo.timeStart = $(event.target).parent().children().closest('th').text();
+  eventInfo.content = $(event.target).parent().children().closest('.col-event').text();
+  console.log("SAVED, CLICK")
+  console.log('timeStart: ', eventInfo.timeStart)
+  console.log('content: ', eventInfo.content)
+
+  eventInfo.save();
 })
+
+eventInfo.load();
+
+console.log(localStorage)
