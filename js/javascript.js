@@ -66,31 +66,8 @@ for (hour = 0 + hourStart; hour < hoursInDay + hourStart; hour++) {
 tableEl.append(tBodyEl);
 containerEl.append(tableEl);
 
-
-// Fill the first column dynamically by amount of hours in the day
-
-
-// Color code the hours in the event using bootstrap based off the current time
-// $('tbody').children().eq(5).addClass('present')
-$('tr').children('td').addClass('table-secondary')
-
-// Clicking on the table row triggers an bootstrap enter event modal
-$('table').on('click', '.save-btn', function() {
-  // Save Event Text
-  console.log(this)
-  console.log($(this).siblings('td').text())
-})
-
-// $('table').on('click', '.save-btn', function() {
-//   var el = $(this);
-//   var input = $('<input/>').val(el.text());
-//   el.replaceWith(input);
-//   var save = function() {
-//     var p = $('<p data-editable />').text( input.val());
-//     input.replaceWith(p);
-//     var my = input.val()
-//     console.log(my)
-//   }
-// })
-
 // The Event is stored in localstorage
+$('table').on('click', '.saveBtn', function() {
+  // Save Event Text
+  console.log("SAVED, MAYBE?")
+})
