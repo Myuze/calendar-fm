@@ -11,6 +11,7 @@ var eventInfo = {
   content: "",
 
   save: function() {
+    // Store new Event in an existing dictionary then set in local storage
     eventInfoCache[this.timeStart] = this.content;
     localStorage.setItem('eventInfo', JSON.stringify(eventInfoCache))
   },
@@ -18,6 +19,7 @@ var eventInfo = {
   load: function() {
     eventInfoCache = JSON.parse(localStorage.getItem('eventInfo'))
 
+    // Only parse data from localstorage if it exists
     if (eventInfoCache != null) {
       for (const [key, value] of Object.entries(eventInfoCache)) {
         var thEl = $(`th:contains('${key}')`)
