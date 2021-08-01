@@ -1,7 +1,6 @@
 // Global Definitions
 const hoursInDay = 24;
-const hourStart = 0;
-const workHoursStart = 9;
+const hourStart = 9;
 const containerEl = $('.container');
 var eventInfoCache = {};
 
@@ -47,7 +46,7 @@ for (hour = 0 + hourStart; hour < hoursInDay + hourStart; hour++) {
   var tRowEl = $('<tr>').addClass('time-block');
   var tHeadEl = $('<th>').attr('scope', 'row').addClass('hour align-middle').text(cellHour.format('hh:00 A'));
   var tRowEventEl = $('<td>').addClass('col-event text-break text-wrap text-left data-editable').attr('contenteditable', true);
-  var tRowLockEl = $('<td>').addClass('col-lock align-middle saveBtn').text('🔒');
+  var tRowLockEl = $('<td>').addClass('col-lock align-middle saveBtn').text('💾');
 
   // Color Cells depending on time
   if (moment(cellHour).isBefore(moment(), 'h')) {
