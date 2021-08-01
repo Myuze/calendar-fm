@@ -1,6 +1,6 @@
 // Global Definitions
 const hoursInDay = 24;
-const hourStart = 9;
+const hourStart = 0;
 const containerEl = $('.container');
 var eventInfoCache = {};
 
