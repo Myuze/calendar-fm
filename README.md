@@ -8,4 +8,4 @@ Add events to the calendar.
 
     - After entering an event, click the lock button to the right save an event.
 
-    ![Calendar](calendar.JPG)
+![My Work Day Scheduler](calendar.JPG)
